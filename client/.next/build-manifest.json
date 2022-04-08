@@ -15,15 +15,10 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
-    "/": [
+    "/[artist]/[trackId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
-    "/[artist]/[tsn]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/[artist]/[tsn].js"
+      "static/chunks/pages/[artist]/[trackId].js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
