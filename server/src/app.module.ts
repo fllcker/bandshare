@@ -5,6 +5,8 @@ import { UsersModule } from './users/users.module';
 import {User} from "./users/users.model";
 import { LinksModule } from './links/links.module';
 import {Links} from "./links/links.model";
+import { TracksModule } from './tracks/tracks.module';
+import {Tracks} from "./tracks/tracks.model";
 
 @Module({
     imports: [
@@ -18,11 +20,12 @@ import {Links} from "./links/links.model";
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASS,
             database: process.env.POSTGRES_DB,
-            models: [User, Links],
+            models: [User, Links, Tracks],
             autoLoadModels: true
         }),
         UsersModule,
         LinksModule,
+        TracksModule,
     ]
 })
 export class AppModule {}

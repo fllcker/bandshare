@@ -1,14 +1,18 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, UseGuards} from '@nestjs/common';
 import {CreateLinksDto} from "./dto/create-links.dto";
 import {LinksService} from "./links.service";
+import {JwtGuard} from "../users/jwt.guard";
+import {UsersDecorator} from "../users/users.decorator";
 
 @Controller('links')
 export class LinksController {
     constructor(private linksService: LinksService) {}
 
     @Post()
-    create(@Body() createLinksDto: CreateLinksDto) {
-        return this.linksService.create(createLinksDto)
+    @UseGuards(JwtGuard)
+    create(@Body() createLinksDto: CreateLinksDto, @UsersDecorator('username') username) {
+        let payload = {...createLinksDto, author: username}
+        return this.linksService.create(payload)
     }
 
     @Get('/')

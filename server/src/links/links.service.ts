@@ -21,10 +21,10 @@ export class LinksService {
     }
 
     async getAllById(id: number) {
-        return this.linksRepository.findOne({where: {id}})
+        return this.linksRepository.findAll({where: {trackId: id}})
     }
 
     async getAllByUserName(username: string) {
-        return this.linksRepository.findOne({where: {author: username}})
+        return this.linksRepository.findAll({where: {author: username}})
     }
 }
