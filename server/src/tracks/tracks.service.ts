@@ -17,7 +17,7 @@ export class TracksService {
     }
 
     async getAllByAuthor(author: string) {
-        return this.tracksRepository.findOne({where: {author}})
+        return this.tracksRepository.findAll({where: {author}})
     }
 
     async getTrackById(id: number) {

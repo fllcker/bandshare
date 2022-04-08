@@ -137,6 +137,26 @@ img {
     margin-bottom: 10px;
 }
 
+select {
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+option {
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+
+    transition: .2s;
+    border-radius: 0px;
+}
+
+
 input {
     border: 1px solid #e5e5e5;
     padding: 10px;
@@ -169,4 +189,45 @@ button:hover {
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
+}
+
+.tw {
+    border: 1px solid #e5e5e5;
+    padding: 35px;
+    margin: 120px auto;
+    width: 50%;
+}
+
+.one-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.new-platform-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new-platform-input {
+    width: 45%;
+}
+
+.new-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center {
+    margin: 120px auto;
+    text-align: center;
+    font-size: 32px;
+}
+
+.index-h1 {
+    max-width: 600px;
+    margin: 120px auto;
 }
