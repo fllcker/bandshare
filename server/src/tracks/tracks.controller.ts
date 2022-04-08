@@ -15,8 +15,13 @@ export class TracksController {
         return this.tracksService.create(payload)
     }
 
-    @Get('/:author')
+    @Get('/author/:author')
     getAllByAuthor(@Param('author') author) {
         return this.tracksService.getAllByAuthor(author)
+    }
+
+    @Get('/id/:id')
+    getTrackById(@Param('id') id) {
+        return this.tracksService.getTrackById(parseInt(id))
     }
 }

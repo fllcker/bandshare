@@ -1,8 +1,11 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import axios from "axios";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+    axios.defaults.baseURL = 'http://localhost:7000/'
+
+    return <Component {...pageProps} />
 }
 
 export default MyApp

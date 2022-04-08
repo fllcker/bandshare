@@ -123,3 +123,40 @@ img {
 
     cursor: pointer;
 }
+
+.mw {
+    border: 1px solid #e5e5e5;
+    padding: 35px;
+    margin: 120px auto;
+    width: 20%;
+}
+
+.placeholder {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+button {
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    outline: none;
+    font-size: 16px;
+    background: none;
+    margin-top: 20px;
+    transition: .2s;
+}
+
+button:hover {
+    background: #0070f3;
+    color: white;
+}
