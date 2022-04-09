@@ -5,12 +5,15 @@ import axios from "axios";
 import {setCookies} from "cookies-next";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import cookies from "next-cookies";
 
-const LoginPage: NextPage = () => {
+const LoginPage: NextPage = ({authed}: any) => {
     let [username, setUserName] = useState('')
     let [password, setPassword] = useState('')
     let [errors, setErrors] = useState('')
     let router = useRouter()
+
+    if (authed) router.push('/account/tracks')
 
     let nextButton = async () => {
         if (username.length == 0 || password.length == 0) return setErrors('Заполните данные')
@@ -63,3 +66,16 @@ const LoginPage: NextPage = () => {
 }
 
 export default LoginPage
+
+export async function getServerSideProps(context: any) {
+    const {jwt} = cookies(context);
+    let authed = false;
+    if (jwt) {
+        const isJwt = jwt.split('.')
+        if (isJwt.length == 3) authed = true;
+    }
+
+    return {
+        props: {authed}
+    }
+}
