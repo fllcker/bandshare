@@ -34,7 +34,7 @@ const LoginPage: NextPage = () => {
                 maxAge: 60 * 60 * 48
             })
 
-            await router.push('/')
+            await router.push('/account/tracks/')
         } else setErrors(token)
 
         setUserName('')

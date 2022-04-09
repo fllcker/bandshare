@@ -4,33 +4,9 @@ import jwt_decode from "jwt-decode";
 import cookies from "next-cookies";
 import axios from "axios";
 import TrackList from "../../components/TrackList";
-import {useRouter} from "next/router";
-import {useState} from "react";
+import NewTrackMenu from "../../components/NewTrackMenu";
 
 const TracksPage: NextPage = ({tracks, username, jwt}: any) => {
-    let router = useRouter()
-    let [trackName, setTrackName] = useState('')
-
-    const newTrack = () => {
-        if (!jwt) return router.push('/account/login')
-
-        let payload = {
-            name: trackName
-        }
-
-        let result = axios({
-            url: '/tracks',
-            method: 'POST',
-            data: payload,
-            headers: {
-                'Authorization': 'Bearer ' + jwt
-            }
-        })
-            .then((response) => {
-                router.reload()
-                return response.data
-            })
-    }
 
     return (
         <MainLayout>
@@ -39,14 +15,11 @@ const TracksPage: NextPage = ({tracks, username, jwt}: any) => {
                 <div className="tracks">
                     <h1>Мои треки: </h1>
                     {
-                        <TrackList tracks={tracks}/>
+                        tracks.length > 0 ?
+                            <TrackList tracks={tracks}/>
+                        : <p className='text-center'>Треков нет</p>
                     }
-
-                    <div className="new-track">
-                        <input type="text" placeholder='Название' value={trackName} onChange={e => setTrackName(e.target.value)}/>
-                        <button onClick={newTrack}>Новый трек</button>
-                    </div>
-
+                    <NewTrackMenu jwt={jwt}/>
                 </div>
             </div>
         </MainLayout>
@@ -57,19 +30,19 @@ export default TracksPage
 
 export async function getServerSideProps(context: any) {
     const {jwt} = cookies(context);
-    const decoded = jwt_decode(jwt)
-    const username = decoded.username
+    let returnProps = {username: 'null', jwt: null}
+    if (jwt) returnProps.username = jwt_decode(jwt).username
 
     let tracks = await axios({
-        url: '/tracks/author/' + username
+        url: '/tracks/author/' + returnProps.username
     })
         .then(response => response.data)
 
-    if (!tracks) tracks = []
+    if (!tracks) tracks = [];
 
     tracks = tracks.reverse()
 
     return {
-        props: {tracks, username, jwt}, // will be passed to the page component as props
+        props: {...returnProps, tracks, jwt}, // will be passed to the page component as props
     }
 }

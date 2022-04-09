@@ -5,7 +5,7 @@ import axios from "axios";
 
 const TrackId: NextPage = ({track, links}: any) => {
     let style = {
-        backgroundImage: 'url(https://api.band.link/img/bandlinks/ZaerV_W1xWa9ER_370x370.jpeg)',
+        backgroundImage: `url(${track.image})`,
         backgroundColor: 'rgba(216, 216, 216, 1)',
         width: '100%',
         height: '1009px',
@@ -24,7 +24,7 @@ const TrackId: NextPage = ({track, links}: any) => {
 
                 <div className="link-wrapper">
                     <div className="trackImage">
-                        <img src="https://api.band.link/img/bandlinks/ZaerV_W1xWa9ER_370x370.jpeg" alt="img"/>
+                        <img src={track.image} alt=""/>
                         <div className="titleBar">
                             <h2 className='title-author'>{track.author}</h2>
                             <p className='title-track'>{track.name}</p>

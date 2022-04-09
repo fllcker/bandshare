@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import MainLayout from "../../../components/MainLayout";
 import PlatformLink from "../../../components/PlatformLink";
@@ -8,17 +8,29 @@ import Link from 'next/link';
 import jwt_decode from "jwt-decode";
 
 const TrackView = ({track, links, jwt, username}: any) => {
-    let [platformChoose, setPlatformChoose] = useState('')
+    let [platformChoose, setPlatformChoose] = useState('Apple Music')
+    let [prePlatformLink, setPrePlatformLink] = useState('')
     let [trackRef, setTrackRef] = useState('')
     let router = useRouter()
+
+    const linksPre = new Map([
+        ['Apple Music', 'https://music.apple.com/'],
+        ['VK Музыка', 'https://boom.ru/redirect/album/'],
+        ['Yandex Music', 'https://music.yandex.ru/album/'],
+        ['Spotify', 'https://open.spotify.com/'],
+        ['YouTube Music', 'https://music.youtube.com/watch?v=']
+    ])
+
 
     const newPlatformButton = async () => {
         if (!jwt) return router.push('/account/login')
         if (platformChoose == '') return 1;
 
+        let newRef = linksPre.get(platformChoose) + trackRef
+
         let payload = {
             platform: platformChoose,
-            trackRef,
+            trackRef: newRef,
             trackId: track.id
         }
 
@@ -35,6 +47,8 @@ const TrackView = ({track, links, jwt, username}: any) => {
                 return response.data
             })
     }
+
+    useEffect(() => setPrePlatformLink(linksPre.get(platformChoose) || 'Apple Music'), [platformChoose])
 
     return (
         <MainLayout>
@@ -55,7 +69,6 @@ const TrackView = ({track, links, jwt, username}: any) => {
 
                 <div className="new-platform-line">
                     <select value={platformChoose} onChange={e => setPlatformChoose(e.target.value)}>
-                        <option value="">Выберите платформу</option>
                         <option value="Apple Music">Apple Music</option>
                         <option value="Spotify">Spotify</option>
                         <option value="VK Музыка">VK Музыка</option>
@@ -63,9 +76,15 @@ const TrackView = ({track, links, jwt, username}: any) => {
                         <option value="YouTube Music">YouTube Music</option>
                     </select>
 
-                    <input type="text" className='new-platform-input' value={trackRef} onChange={e => setTrackRef(e.target.value)}/>
+                    <br/>
+                    <div className='new-platform-inputs'>
+                        <div className='new-platform-ib'>
+                            <p className="link-to-platform">{prePlatformLink}</p>
+                            <input type="text" className='new-platform-input' value={trackRef} onChange={e => setTrackRef(e.target.value)}/>
+                        </div>
 
-                    <button onClick={newPlatformButton}>Добавить</button>
+                        <button onClick={newPlatformButton}>Добавить</button>
+                    </div>
                 </div>
             </div>
         </MainLayout>
