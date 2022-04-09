@@ -1,17 +1,17 @@
-#BandShare
+# BandShare
 
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 
 
-##Description
+## Description
 
 * BandShare is a service where musicians can post links to their tracks on different music platforms in one place.
 ---
 * BandShare — сервис, на котором музыканты могут размещать ссылки на свои треки, на разных музыкальных площадках в одном месте.
 
-#Get start
+# Get start
 
-##Installation
+## Installation
 client (nextJS)
 ```bash 
     cd client
@@ -25,7 +25,7 @@ server (nextJS)
     cd ..
 ```
 
-##Running
+## Running
 client (nextJS)
 ```bash 
     cd client
