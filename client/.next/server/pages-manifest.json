@@ -1,8 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/account/tracks": "pages/account/tracks.js",
-  "/account/singup": "pages/account/singup.js",
-  "/account/view/[trackId]": "pages/account/view/[trackId].js"
-}
