@@ -5,9 +5,9 @@
 
 ## Description
 
-* BandShare is a service where musicians can post links to their tracks on different music platforms in one place.
+* ProstoMarket is a Russian free online service for the selection of goods and shopping
 ---
-* BandShare — сервис, на котором музыканты могут размещать ссылки на свои треки, на разных музыкальных площадках в одном месте.
+* ProstoMarket - российский онлайн маркет
 
 # Get start
 
