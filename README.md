@@ -1,4 +1,4 @@
-# BandShare
+<h1 align="center">BandShare</h1>
 
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 
